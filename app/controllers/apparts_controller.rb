@@ -57,7 +57,7 @@ class AppartsController < ApplicationController
     def set_all
       Appart.destroy_all
       Photo.destroy_all
-       html_doc = Nokogiri::HTML(open('https://www.logic-immo.com/location-immobilier-lyon-tous-codes-postaux,144_99/options/groupprptypesids=1/pricemin=1/pricemax=900/areamin=1/nbrooms=1,2/order=reco_seo_desc'))
+       html_doc = Nokogiri::HTML(open('https://www.logic-immo.com/location-immobilier-lyon-tous-codes-postaux,424_99/options/groupprptypesids=1/pricemin=1/pricemax=900/areamin=1/nbrooms=1,2/order=reco_seo_desc'))
           apparts = html_doc.css('.offer-list-item')
           img = html_doc.css('.thumb-link img')
           apparts.each do |element|
@@ -67,6 +67,7 @@ class AppartsController < ApplicationController
             surface:  element.css(".offer-details-caracteristik--area").text.strip,
             pieces:   element.css(".offer-details-caracteristik--rooms").text.strip
             )
+            # puts element.css(".offer-details-caracteristik")[0]["href"]
           end
             img.each do |l|
             Photo.create!(
