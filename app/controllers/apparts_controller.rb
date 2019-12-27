@@ -9,16 +9,13 @@ class AppartsController < ApplicationController
       # set_room
       set_all
       @appart = Appart.all
+      @photo = Photo.all
 
       #   Appart.create!(
       # title: item.css(".s-access-title").text.strip,
       # price: item.css(".s-price").text.to_d,
       # rating: item.css("span+ .a-text-normal").text.to_f)
   end
-
-
-
-
 
 
   private
@@ -59,14 +56,21 @@ class AppartsController < ApplicationController
 
     def set_all
       Appart.destroy_all
+      Photo.destroy_all
        html_doc = Nokogiri::HTML(open('https://www.logic-immo.com/location-immobilier-paris-75,100_1/options/groupprptypesids=1/pricemin=1/pricemax=900/areamin=1/nbrooms=1,2/order=reco_seo_desc'))
           apparts = html_doc.css('.offer-list-item')
+          img = html_doc.css('.thumb-link img')
           apparts.each do |element|
             Appart.create!(
             price:    element.css(".offer-price").text.strip,
             ville:    element.css(".offer-details-location-half").text.strip,
             surface:  element.css(".offer-details-caracteristik--area").text.strip,
             pieces:   element.css(".offer-details-caracteristik--rooms").text.strip
+            )
+          end
+            img.each do |l|
+            Photo.create!(
+            url:    l.attr('data-original')
             )
           end
     end
