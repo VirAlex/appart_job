@@ -1,15 +1,19 @@
+<div class="container">
+  <h1>Voici les apparts recherchés:</h1>
 <%@appart.each_with_index do |app, index| %>
-<div class="card-trip">
-   <%= image_tag(@photo[index].url) %>
-  <div class="card-trip-infos">
-    <div>
-      <h2><%= app.ville %></h2>
-      <p>Un appartement de <%= app.pieces %> pièces</p>
+  <div class="card-trip">
+    <%= image_tag(@photo[index].url)%>
+    <div class="card-trip-infos">
+      <div>
+        <h2><%= app.ville %></h2>
+        <p>Un appartement de <%= app.pieces %> pièces, d'une surface de <%= app.surface %>m2</p>
+      </div>
+      <h2 class="card-trip-pricing"><%= app.price %>€</h2>
     </div>
-    <h2 class="card-trip-pricing"><%= app.price %>€</h2>
   </div>
+  <% end %>
 </div>
-<% end %>
+
 
 
 
