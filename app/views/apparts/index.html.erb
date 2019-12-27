@@ -1,10 +1,10 @@
-<h1>Hello</h1>
-<p>Les prix</p>
-  <%#@price.each do |prix| %>
-  <%#@city.each do |ville| %>
-  <li>
-  <%#= prix %>
-  <%#= ville %>
-</li>
-  <%# end %>
-  <%# end %>
+
+<h1>Voici les apparts recherchés:</h1>
+<%@appart.each do |app| %>
+
+<p>Un appartement de <%= app.pieces %> pièces</p>
+<p> D'une surface de <%= app.surface %>m2</p>
+<p>Son prix: <%= app.price %>€</p>
+<p>Idéalement situé à <%= app.ville %></p>
+<hr/>
+<% end %>
