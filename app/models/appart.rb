@@ -1,0 +1,2 @@
+class Appart < ApplicationRecord
+end
